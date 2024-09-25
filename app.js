@@ -2,9 +2,10 @@ const express = require('express')
 const { connectToDB,getDb }  = require('./db');
 const { ObjectId } = require('mongodb');
 let db;
+
 // init  app 
 const app = express()
-
+app.use(express.json)
 // db connection 
 connectToDB((err)=>{
     if (!err){
@@ -41,4 +42,13 @@ app.get('/students/:id',(req,res)=>{
     }else{
         res.status(500).json({error: "Id is not valid"})
     }
+})
+
+app.post('/students',(req,res)=>{
+const data = req.body
+db.collection('students').insertOne(data).then(result =>{
+    res.status(201).json({result}).catch(err=>{
+        res.status(501).json({err})
+    })
+})
 })
