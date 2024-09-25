@@ -10,7 +10,7 @@ module.exports = {
             return cb();
         }).catch((error) => {
             console.log(error);
-            return cb(error);  // Use "error" instead of "err" to match the variable name
+            return cb(error);  
         });
     },
     getDb: () => dbConnection
