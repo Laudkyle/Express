@@ -13,15 +13,12 @@ let posts = [
     {id:4, title:'Post Four'},
 ]
 
-app.get('/api/posts/',(req,res)=>{
-    const limit = req.query.limit
+app.get('/api/posts',(req,res)=>{
+    let limit = req.query.limit
     if(!isNaN(limit) && limit > 0){
-        res.json(posts.slice(0,limit)) 
-    }else{
-        res.status(404).json({error: "limit not valid"})
+        return res.json(posts.slice(0,limit)) 
     }
-
-
+    res.json({posts})
     
 })
 
