@@ -1,8 +1,10 @@
 import express from 'express'
+import logger from '../middleware/logger'
+
 const router = express.Router()
 router.use(express.json())
 router.use(express.urlencoded({extended:false}))
-
+router.use
 let posts = [
     {id:1, title:'Post One'},
     {id:2, title:'Post Two'},
