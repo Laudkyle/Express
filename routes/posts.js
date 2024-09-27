@@ -32,12 +32,13 @@ router.post("/", (req, res, next) => {
     id: posts.length + 1,
     title: req.body.title,
   };
-  if (post) {
-    posts.push(newPost);
-    res.status(201).json({ posts });
+  if (!post) {
+    const error = new Error("Could Not send the post successfully");
+    return next(error);
   }
-  const error = new Error("Could Not send the post successfully")
-  return next(error)
+
+  posts.push(newPost);
+  res.status(201).json({ posts });
 });
 
 // putting
