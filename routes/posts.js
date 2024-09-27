@@ -32,8 +32,9 @@ router.post("/", (req, res, next) => {
     id: posts.length + 1,
     title: req.body.title,
   };
-  if (!post) {
+  if (!newPost.title) {
     const error = new Error("Could Not send the post successfully");
+    error.status = 400;
     return next(error);
   }
 
