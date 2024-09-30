@@ -60,13 +60,14 @@ app.post("/", (req, res) => {
 
 app.put("/:id", (req, res) => {
   const id = parseInt(req.params.id);
-    if (id){
-  const post = posts.find((post) => post.id === id);
-
-  post.title = req.body.title;
-  return res.status(200).json(posts);}
-  return res.status(404).json({err: "Please enter a valid ID"})
-  
+  if (id) {
+    const post = posts.find((post) => post.id === id);
+if (post){
+    post.title = req.body.title;
+    return res.status(200).json(posts);}
+    return res.status(400).json({msg: `Post with id ${id} was not found`})
+  }
+  return res.status(404).json({ err: "Please enter a valid ID" });
 });
 
 app.listen(port, () => {
