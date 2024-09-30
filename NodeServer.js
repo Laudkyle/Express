@@ -85,7 +85,7 @@ app.post("/", (req, res) => {
   }
 });
 
-// Editting a post
+// Editing a post
 
 app.put("/:id", (req, res) => {
   const id = parseInt(req.params.id);
