@@ -48,12 +48,24 @@ app.get("/:id", (req, res) => {
 // Creating a single post
 app.post("/", (req, res) => {
   const newPost = { id: posts.length + 1, title: req.body };
-    if (req.body.title){
-        posts.push(newPost);
-        res.status(201).json(posts)
-    }else{
-        res.status(400).json({err: "The title cannot be empty"})
-    }
+  if (req.body.title) {
+    posts.push(newPost);
+    res.status(201).json(posts);
+  } else {
+    res.status(400).json({ err: "The title cannot be empty" });
+  }
+});
+
+// Editting a post
+
+app.put("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+    if (id){
+  const post = posts.find((post) => post.id === id);
+
+  post.title = req.body.title;
+  return res.status(200).json(posts);}
+  return res.status(404).json({err: "Please enter a valid ID"})
   
 });
 
