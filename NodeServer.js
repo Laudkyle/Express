@@ -9,7 +9,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler)
 app.use(logger)
 let posts = [
-
+    { id: 1, title: "Post One" },
+    { id: 2, title: "Post Two" },
+    { id: 3, title: "Post Three" },
+    { id: 4, title: "Post Four" },
+    { id: 5, title: "Post One" },
+    { id: 6, title: "Post Two" },
+    { id: 7, title: "Post Three" },
+    { id: 8, title: "Post Four" },
 ];
 
 // Getting all posts
@@ -28,7 +35,17 @@ app.get("/", (req, res,next) => {
 
   return next(error)
   } else {
-    if (page) {
+const pageNumber =parseInt(page)
+if (pageNumber && pageNumber >0){
+    res.status(200).json(allPosts.filter((post)=>
+        post.id > pageNumber*perPage && post.id <= pageNumber*perPage + perPage
+    ))
+}else{if(pageNumber == 0){
+    res.status(200).json(allPosts.filter((post)=>
+        post.id >= 0 && post.id <= perPage
+    ))
+}}
+    if (limit) {
       res.status(200).json(allPosts.slice(0, limit));
     } else {
       res.status(200).json(allPosts);
