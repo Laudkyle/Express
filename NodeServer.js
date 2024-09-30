@@ -47,6 +47,11 @@ app.get("/:id", (req, res) => {
   }
 });
 
+// Creating a single post
+app.post('/',(req,res)=>{
+
+})
+
 app.listen(port, () => {
   console.log(`Server Started on Port ${port}`);
 });
