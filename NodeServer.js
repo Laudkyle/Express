@@ -22,11 +22,9 @@ app.get("/", (req, res) => {
     allPosts.push(post);
   });
   if (allPosts.length < 1) {
-    res
-      .status(404)
-      .json({
-        msg: "There are no posts present in the database. Please Update your database!!!",
-      });
+    res.status(404).json({
+      msg: "There are no posts present in the database. Please Update your database!!!",
+    });
   } else {
     if (limit) {
       res.status(200).json(allPosts.slice(0, limit));
@@ -48,9 +46,16 @@ app.get("/:id", (req, res) => {
 });
 
 // Creating a single post
-app.post('/',(req,res)=>{
-
-})
+app.post("/", (req, res) => {
+  const newPost = { id: posts.length + 1, title: req.body };
+    if (req.body.title){
+        posts.push(newPost);
+        res.status(201).json(posts)
+    }else{
+        res.status(400).json({err: "The title cannot be empty"})
+    }
+  
+});
 
 app.listen(port, () => {
   console.log(`Server Started on Port ${port}`);
