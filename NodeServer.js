@@ -15,6 +15,7 @@ let posts = [
 // Getting all posts
 app.get("/", (req, res,next) => {
     const page = req.query.p || 0
+    const perPage = 3
   const limit = parseInt(req.query.limit);
   const allPosts = [];
 
@@ -27,7 +28,7 @@ app.get("/", (req, res,next) => {
 
   return next(error)
   } else {
-    if (limit) {
+    if (page) {
       res.status(200).json(allPosts.slice(0, limit));
     } else {
       res.status(200).json(allPosts);
