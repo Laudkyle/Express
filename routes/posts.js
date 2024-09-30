@@ -1,27 +1,21 @@
 import express from "express";
-
+import { getPost,getPosts,createPost,editPost,deletePost } from '../controller/postController.js'
 const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
-router.use;
-let posts = [
-  { id: 1, title: "Post One" },
-  { id: 2, title: "Post Two" },
-  { id: 3, title: "Post Three" },
-  { id: 4, title: "Post Four" },
-];
+
 
 // getting all posts
-router.get("/", );
+router.get("/", getPosts);
 
 // getting single post
-router.get("/:id", );
+router.get("/:id", getPost);
 
 // Posting
-router.post("/", );
+router.post("/", createPost);
 
 // putting
-router.put("/:id", );
+router.put("/:id", editPost);
 // deleting
-router.delete("/:id", );
+router.delete("/:id", deletePost);
 export default router;
