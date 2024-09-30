@@ -14,6 +14,7 @@ let posts = [
 
 // Getting all posts
 app.get("/", (req, res,next) => {
+    const page = req.query.p || 0
   const limit = parseInt(req.query.limit);
   const allPosts = [];
 
