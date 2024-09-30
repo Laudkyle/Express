@@ -13,8 +13,14 @@ let posts = [
     { id: 4, title: "Post Four" },
   ];
 
-  
 
+app.get('/',(req,res)=>{
+    const allPosts = [];
+    posts.forEach((post)=>{
+allPosts.push(post)
+    })
+    res.status(200).json({allposts})
+})
 
 app.listen(port,()=>{
     console.log(`Server Started on Port ${port}`)
