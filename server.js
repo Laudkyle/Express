@@ -3,6 +3,8 @@ import path from 'path'
 import posts from './routes/posts.js'
 import logger from './middleware/logger.js'
 import errorHandler from './middleware/error.js'
+import notFound from './middleware/notfound.js'
+
 const port = process.env.PORT || 4500
 const app = express()
 
@@ -11,6 +13,7 @@ const app = express()
 
 app.use(logger)
 app.use('/api/posts',posts)
+app.use(notFound)
 app.use(errorHandler)
 
 
