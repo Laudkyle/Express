@@ -70,6 +70,18 @@ if (post){
   return res.status(404).json({ err: "Please enter a valid ID" });
 });
 
+
+// Deleting a post
+app.delete('/:id',(req,res)=>{
+    const id = parseInt(req.params.id)
+    const post_del =posts.find((post)=> post.id === id)
+
+    if (post_del){
+        posts = posts.filter((post) => post.id != post_del.id)
+        return res.status(200).json(posts)
+    }
+    return res.status(404).json({err: `Post with id ${id} was not found`})
+})
 app.listen(port, () => {
   console.log(`Server Started on Port ${port}`);
 });
